@@ -1,16 +1,16 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 
-import { AppRouter, LazyRoutes } from '@/routes';
+import { AppRouter, Routes } from '@/routes';
 
 export const App = () => {
   const router = createBrowserRouter([
     {
       element: <AppRouter />,
-      children: LazyRoutes
+      children: Routes
     },
     {
       path: '*',
-      element: <Navigate replace to="lazy1" />
+      element: <Navigate replace to="lazyload" />
     }
   ]);
 

@@ -1,24 +1,23 @@
 import { lazily } from 'react-lazily';
-import { RouteObject } from 'react-router-dom';
+const { LazyLayout } = lazily(() => import('@/01-lazyload/layout/LazyLayout'));
 
-const { LazyPage1 } = lazily(() => import('@/01-lazyload/pages/LazyPage1'));
-const { LazyPage2 } = lazily(() => import('@/01-lazyload/pages/LazyPage2'));
-const { LazyPage3 } = lazily(() => import('@/01-lazyload/pages/LazyPage3'));
+export interface Route {
+  id: string;
+  to?: string;
+  path: string;
+  element: JSX.Element;
+}
 
-export const LazyRoutes: RouteObject[] = [
+export const Routes: Route[] = [
   {
-    id: 'Lazy 1',
-    path: 'lazy1',
-    element: <LazyPage1 />
+    id: 'LazyLayout - Dash',
+    path: 'lazyload/*',
+    to: 'lazyload',
+    element: <LazyLayout />
   },
   {
-    id: 'Lazy 2',
-    path: 'lazy2',
-    element: <LazyPage2 />
-  },
-  {
-    id: 'Lazy 3',
-    path: 'lazy3',
-    element: <LazyPage3 />
+    id: 'No Lazy',
+    path: 'no-lazy',
+    element: <h1>No Lazy</h1>
   }
 ];
