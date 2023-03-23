@@ -1,9 +1,10 @@
-import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '@/02-component-patterns/components';
+import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
+import '../styles/custom-styles.css';
 
 const product = {
   id: crypto.randomUUID(),
-  title: 'default title'
-  // img: '/coffee-mug.png'
+  title: 'default title',
+  img: '/coffee-mug.png'
 };
 
 export const ShoppingPage = () => (
@@ -17,20 +18,25 @@ export const ShoppingPage = () => (
         flexWrap: 'wrap'
       }}
     >
-      <ProductCard product={product}>
-        <ProductCard.Image img="/coffee-mug.png" />
-
-        <ProductCard.Title title={product.title} />
-
-        <ProductCard.Buttons />
+      <ProductCard className="bg-dark text-white" product={product}>
+        <ProductCard.Image className="custom-image" img="/coffee-mug.png" />
+        <ProductCard.Title className="text-bold" title={product.title} />
+        <ProductCard.Buttons className="custom-buttons" />
       </ProductCard>
 
-      <ProductCard product={product}>
-        <ProductImage />
+      <ProductCard className="bg-dark text-white" product={product}>
+        <ProductImage
+          className="custom-image"
+          style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
+        />
+        <ProductTitle className="text-bold" />
+        <ProductButtons className="custom-buttons" />
+      </ProductCard>
 
-        <ProductTitle />
-
-        <ProductButtons />
+      <ProductCard product={product} style={{ backgroundColor: '#01D8FF' }}>
+        <ProductImage style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }} />
+        <ProductTitle style={{ fontWeight: 'bold' }} />
+        <ProductButtons style={{ display: 'flex', justifyContent: 'end' }} />
       </ProductCard>
     </div>
   </div>

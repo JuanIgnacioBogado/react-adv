@@ -1,19 +1,28 @@
 import { createContext, useContext } from 'react';
 
-import { useProduct } from '@/02-component-patterns/hooks';
-import { ProductContext as ProductContextInterface, ProductCardProps } from '@/02-component-patterns/interfaces';
-import styles from '@/02-component-patterns/styles/styles.module.css';
+import { useProduct } from '../hooks';
+import { ProductContext as ProductContextInterface, Product } from '../interfaces';
+import styles from '../styles/styles.module.css';
 
 const ProductContext = createContext({} as ProductContextInterface);
 
 export const useProductContext = () => useContext(ProductContext);
 
-export const ProductCard = ({ children, product }: ProductCardProps) => {
+export interface Props {
+  product: Product;
+  children?: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export const ProductCard = ({ children, product, className = '', style }: Props) => {
   const productState = useProduct();
 
   return (
     <ProductContext.Provider value={{ ...productState, product }}>
-      <div className={styles.productCard}>{children}</div>
+      <div className={`${styles.productCard} ${className}`} style={style}>
+        {children}
+      </div>
     </ProductContext.Provider>
   );
 };

@@ -1,10 +1,17 @@
 import { useMemo } from 'react';
 
-import { useProductContext } from '@/02-component-patterns/components/ProductCard';
-import noImage from '@/02-component-patterns/assets/no-image.jpg';
-import styles from '@/02-component-patterns/styles/styles.module.css';
+import noImage from '../assets/no-image.jpg';
+import styles from '../styles/styles.module.css';
 
-export const ProductImage = ({ img = '' }) => {
+import { useProductContext } from './ProductCard';
+
+export interface Props {
+  img?: string;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export const ProductImage = ({ img, className = '', style }: Props) => {
   const { product } = useProductContext();
 
   const imgToShow = useMemo(() => {
@@ -14,5 +21,12 @@ export const ProductImage = ({ img = '' }) => {
     return noImage;
   }, [img, product.img]);
 
-  return <img alt="Product Image" className={styles.productImg} src={imgToShow} />;
+  return (
+    <img
+      alt="Product Image"
+      className={`${styles.productImg} ${className}`}
+      src={imgToShow}
+      style={style}
+    />
+  );
 };
