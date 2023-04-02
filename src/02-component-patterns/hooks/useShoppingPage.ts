@@ -7,16 +7,13 @@ export const useShoppingPage = () => {
 
   const onProductCountChange = ({ product, count }: { product: Product; count: number }) => {
     setShoppingCart(prevProds => {
-      const productCount = prevProds[product.id]?.count || 0;
-      const totalCount = Math.max(productCount + count, 0);
-
-      if (!totalCount) {
+      if (!count) {
         delete prevProds[product.id];
 
         return { ...prevProds };
       }
 
-      return { ...prevProds, [product.id]: { ...product, count: totalCount } };
+      return { ...prevProds, [product.id]: { ...product, count } };
     });
   };
 
