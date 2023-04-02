@@ -1,6 +1,6 @@
 import { NavLinkList } from './';
 
-import { /* LazyRoutes,  */ ComponentPatternsRoutes } from '@/routes';
+import { ComponentPatternsRoutes } from '@/routes';
 
 export const Sidebar = () => (
   <nav className="nav">
