@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { Route } from '@/routes/routes';
+import { Route } from '@/routes';
 
 interface Props {
   routes: Route[];
